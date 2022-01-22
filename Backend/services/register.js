@@ -36,4 +36,22 @@ let registerUser = async(req, res) => {
    }
 }
 
-module.exports =  registerUser ;
+let showUser = async (req,res) => {
+   try{
+      UserModel.find((err,data)=>{
+         if(err){
+            res.status(500).send(err);
+        } else {
+            res.status(200).send(data);
+        }
+      });
+      // res.status(200).send("OK");
+
+   }catch(err){
+      console.log("err");
+      return res.status(400).send("error, try again");
+   }
+
+}
+
+module.exports = { registerUser, showUser} ;
